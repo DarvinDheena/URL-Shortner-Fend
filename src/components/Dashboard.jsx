@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import config from '../config';
 
   function Dashboard({ urls  }) {
 
@@ -7,13 +8,13 @@ import Table from 'react-bootstrap/Table';
 
 
   return (
-    <div>
+    <div className='mt-5 pt-0 m-auto bg-white p-3 shadow rounded-4'>
       <Table striped="columns">
       <thead>
         <tr>
-          <th>URL </th>
-          <th>ShortURL</th>
-          <th>CreatedAt</th>
+          <th><h4>URL</h4> </th>
+          <th> <h4>ShortURL</h4> </th>
+          <th> <h4>CreatedAt</h4> </th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +22,7 @@ import Table from 'react-bootstrap/Table';
           urls.map( url => {
             return <tr key={ url._id }>
               <td>{ url.longURL }</td>
-              <td> { url.shortURL}</td>
+              <td> {`${config.API_URL}/url/ ${url.shortURL}`}</td>
               <td>{ url.createdAt  }</td>
             </tr>
           })

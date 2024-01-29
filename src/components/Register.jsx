@@ -2,8 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import config from '../config';
+import { useNavigate } from 'react-router-dom';
 
 function Register({ registerFormData , setRegisterFormData }) {
+    const navigate = useNavigate();
     const handleRegister = async  (event) =>{
         event.preventDefault();
         const newUser = {
@@ -13,18 +16,19 @@ function Register({ registerFormData , setRegisterFormData }) {
             password : registerFormData.password 
         }
         try {
-          await axios.post('http://localhost:6001/users/register',newUser)
+          await axios.post(`${ config.API_URL }/users/register`,newUser)
           .then ((response) => {
-            console.log(response.data);
+            window.alert(response.data.message);
+            navigate('/login')
           })
              
         } catch (error) {
-            console.log(error.response.data.message);
+            window.alert(error.response.data.message);
         }
     }
     return (
-    <div>
-        <h1> Registeration form</h1>
+    <div className='mt-5 w-25 m-auto bg-white p-3 shadow rounded-4'>
+        <h1 className='mb-4 fs-2'> Registeration form</h1>
         <Form onSubmit={ handleRegister}>
             <Form.Group className="mb-3" >
                 <Form.Label>FirstName</Form.Label>

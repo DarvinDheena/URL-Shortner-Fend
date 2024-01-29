@@ -49,7 +49,7 @@ function PasswordReset({ loginFormData , setLoginFormData , setUser , setToken }
      }
 
   return (
-    <div>
+    <div className='mt-5 w-25 m-auto bg-white p-3 shadow rounded-4'>
      
         <Form>
             <Form.Group className="mb-3" >
@@ -65,7 +65,7 @@ function PasswordReset({ loginFormData , setLoginFormData , setUser , setToken }
                     } )}
                 />
             </Form.Group>
-            <Button 
+            <Button className='mb-3'
                 variant="success" 
                 onClick={ handleSendMail }
                 >Send Email </Button>
@@ -77,7 +77,7 @@ function PasswordReset({ loginFormData , setLoginFormData , setUser , setToken }
                      onChange={ (e) => setCode( e.target.value )}
                 />
             </FormGroup>
-            <Button 
+            <Button className='mt-3 mb-3'
                 variant="success" 
                 onClick={ handleVerifyString }
                 >Verify Code</Button>
@@ -91,6 +91,7 @@ function PasswordReset({ loginFormData , setLoginFormData , setUser , setToken }
                 />
             </FormGroup>
             <Button 
+            className='mt-3'
                 variant="success" 
                 onClick={ handleUpdatePassword }
                 >Verify Code</Button>

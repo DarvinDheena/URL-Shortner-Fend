@@ -3,9 +3,11 @@ import React from 'react';
 import PasswordReset from './PasswordReset';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
+    const navigate = useNavigate();
     const handleLogin = async  (event) => {
         event.preventDefault();
         const user = {
@@ -21,34 +23,24 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
                     // lets save the user details and token in localstorage
                     window.localStorage.setItem('user',JSON.stringify(response.data.user));
                     window.localStorage.setItem('token',response.data.token);
-                    console.log(response.data.user);
+                    navigate('/createurl')
+
                 })
         } catch (error) {
-            console.log(error);
+            window.alert(error.response.data.message);
         }
 
     }
 
-    const handleForgotPassword = async (event) => {
-        event.preventDefault();
-        try {
-            const userName = loginFormData.userName ;
-            console.log(userName)
-            await axios.get(`http://localhost:6001/users/forgot/${userName}`)
-            .then((response)=>{
-                window.alert(response.data.message)
-                
-            })
-        } catch (error) {
-            console.log(response.error.data.message);
-        }
-    }
   return (
-    <div>
-        <Form onSubmit={ handleLogin }>
-             <Form.Group className="mb-3" >
+    
+    <div className='container'>
+        <div className=' row justify-content-center align-items-center vh-100' >
+        <Form onSubmit={ handleLogin } className='col-3 bg-white p-4 shadow rounded-5 mb-5'>
+             <Form.Group className="mb-2" >  
                 <Form.Label>Email / UserName</Form.Label>
                 <Form.Control 
+                className='mt-2'
                     type="email" 
                     placeholder='Email'
                     required
@@ -60,8 +52,9 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
                 />
             </Form.Group>
             < Form.Group className="mb-3" >
-                <Form.Label>Password</Form.Label>
+                <Form.Label className='mb-0'>Password</Form.Label>
                 <Form.Control 
+                    className='mt-2'
                      type="password" 
                      placeholder='password'
                      required
@@ -72,11 +65,12 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
                      } )}
                 />
             </Form.Group>
-            <Button 
-                variant="success" 
-                type='submit'
-                >Login</Button>
+            <div className=''>
+                <Button variant="success" type='submit' className='px-3 w-100'>Login</Button>
+            </div>
         </Form>   
+        </div>
+      
     </div>
   )
 }
