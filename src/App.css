@@ -1,0 +1,9 @@
+*{
+    width: 100%;
+    background-color: aqua;
+}
+
+.felx-container {
+    display: flex;
+    justify-content: center;
+}
