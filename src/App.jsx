@@ -56,6 +56,7 @@ function App() {
         
             <Link to='/signup' className='me-4 btn btn-primary'>Signup</Link>
             <Link to='/login'  className='me-4 btn btn-primary'> Login</Link>
+            <Link to='/' className='me-4 btn btn-primary'>DasshBoard</Link>
              
       </div>
     <Routes>

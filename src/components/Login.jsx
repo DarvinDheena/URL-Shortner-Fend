@@ -4,6 +4,7 @@ import PasswordReset from './PasswordReset';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 
 function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
@@ -15,7 +16,7 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
             password : loginFormData.password
         }
         try {
-            await axios.post('http://localhost:6001/users/login',user)
+            await axios.post(`${ config.API_URL}/users/login`,user)
                 .then((response) => {
                     setUser(response.data.user);
                     setToken(response.data.token);
@@ -31,7 +32,10 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
         }
 
     }
-
+    const handleForgotPassword = (event) => {
+        event.preventDefault();
+        navigate('/forgot')
+    }
   return (
     
     <div className='container'>
@@ -67,6 +71,7 @@ function Login({ loginFormData , setLoginFormData , setUser , setToken }) {
             </Form.Group>
             <div className=''>
                 <Button variant="success" type='submit' className='px-3 w-100'>Login</Button>
+                <Button variant="success" onClick={ handleForgotPassword } className='px-3 w-100 mt-2'>ForgotPassword</Button>
             </div>
         </Form>   
         </div>

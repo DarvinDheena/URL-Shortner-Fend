@@ -17,7 +17,7 @@ function CreateURL( { user , token }) {
   const handleBtnClick = async (event) => {
     event.preventDefault();
     try {
-        await axios.post('http://localhost:6001/url/create',{ longURL : longUrl } , {
+        await axios.post(`${ config.API_URL }/url/create`,{ longURL : longUrl } , {
         headers : {
           Authorization  : `bearer ${token}`
         }
